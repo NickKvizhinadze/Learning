@@ -1,0 +1,10 @@
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\bin\Debug\netstandard2.0\CreditCardApplications.deps.json
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\bin\Debug\netstandard2.0\CreditCardApplications.dll
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\bin\Debug\netstandard2.0\CreditCardApplications.pdb
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\obj\Debug\netstandard2.0\CreditCardApplications.csproj.AssemblyReference.cache
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\obj\Debug\netstandard2.0\CreditCardApplications.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\obj\Debug\netstandard2.0\CreditCardApplications.AssemblyInfoInputs.cache
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\obj\Debug\netstandard2.0\CreditCardApplications.AssemblyInfo.cs
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\obj\Debug\netstandard2.0\CreditCardApplications.csproj.CoreCompileInputs.cache
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\obj\Debug\netstandard2.0\CreditCardApplications.dll
+C:\Users\nickk_o\source\repos\Learning\MockingProject\CreditCardApplications\obj\Debug\netstandard2.0\CreditCardApplications.pdb

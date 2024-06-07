@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "iRZiMV3iHXg=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nickk_o\\source\\repos\\Learning\\ExpressionTrees\\TitanicExplorer\\TitanicExplorer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nickk_o\\.nuget\\packages\\agileobjects.netstandardpolyfills\\1.6.0\\agileobjects.netstandardpolyfills.1.6.0.nupkg.sha512",
+    "C:\\Users\\nickk_o\\.nuget\\packages\\agileobjects.readableexpressions\\3.3.0\\agileobjects.readableexpressions.3.3.0.nupkg.sha512",
+    "C:\\Users\\nickk_o\\.nuget\\packages\\system.linq.dynamic.core\\1.4.0\\system.linq.dynamic.core.1.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

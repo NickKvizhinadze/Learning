@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = GameEngine.Tests
+build_property.ProjectDir = C:\Users\nickk_o\source\repos\dotnet-core-testing-code-xunit-dotnet-getting-started\02\demos\before\02StartingTest\GameEngine.Tests\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

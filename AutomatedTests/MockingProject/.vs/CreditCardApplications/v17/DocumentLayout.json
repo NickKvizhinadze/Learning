@@ -1,0 +1,135 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{28D08E0B-6AB1-4067-A2CD-7EA31F4EF9D1}|CreditCardApplications.Tests\\CreditCardApplications.Tests.csproj|c:\\users\\nickk_o\\source\\repos\\learning\\mockingproject\\creditcardapplications.tests\\creditcardapplicationevaluatorshould.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28D08E0B-6AB1-4067-A2CD-7EA31F4EF9D1}|CreditCardApplications.Tests\\CreditCardApplications.Tests.csproj|solutionrelative:creditcardapplications.tests\\creditcardapplicationevaluatorshould.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DBC2448-2B42-4466-B357-AFC0259F370D}|CreditCardApplications\\CreditCardApplications.csproj|c:\\users\\nickk_o\\source\\repos\\learning\\mockingproject\\creditcardapplications\\fraudlookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DBC2448-2B42-4466-B357-AFC0259F370D}|CreditCardApplications\\CreditCardApplications.csproj|solutionrelative:creditcardapplications\\fraudlookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DBC2448-2B42-4466-B357-AFC0259F370D}|CreditCardApplications\\CreditCardApplications.csproj|c:\\users\\nickk_o\\source\\repos\\learning\\mockingproject\\creditcardapplications\\creditcardapplicationevaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DBC2448-2B42-4466-B357-AFC0259F370D}|CreditCardApplications\\CreditCardApplications.csproj|solutionrelative:creditcardapplications\\creditcardapplicationevaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DBC2448-2B42-4466-B357-AFC0259F370D}|CreditCardApplications\\CreditCardApplications.csproj|c:\\users\\nickk_o\\source\\repos\\learning\\mockingproject\\creditcardapplications\\ifrequentflyernumbervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DBC2448-2B42-4466-B357-AFC0259F370D}|CreditCardApplications\\CreditCardApplications.csproj|solutionrelative:creditcardapplications\\ifrequentflyernumbervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 15,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FraudLookup.cs",
+              "DocumentMoniker": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications\\FraudLookup.cs",
+              "RelativeDocumentMoniker": "CreditCardApplications\\FraudLookup.cs",
+              "ToolTip": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications\\FraudLookup.cs",
+              "RelativeToolTip": "CreditCardApplications\\FraudLookup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAYAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T12:36:40.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IFrequentFlyerNumberValidator.cs",
+              "DocumentMoniker": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications\\IFrequentFlyerNumberValidator.cs",
+              "RelativeDocumentMoniker": "CreditCardApplications\\IFrequentFlyerNumberValidator.cs",
+              "ToolTip": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications\\IFrequentFlyerNumberValidator.cs",
+              "RelativeToolTip": "CreditCardApplications\\IFrequentFlyerNumberValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T03:22:06.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreditCardApplicationEvaluator.cs",
+              "DocumentMoniker": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications\\CreditCardApplicationEvaluator.cs",
+              "RelativeDocumentMoniker": "CreditCardApplications\\CreditCardApplicationEvaluator.cs",
+              "ToolTip": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications\\CreditCardApplicationEvaluator.cs",
+              "RelativeToolTip": "CreditCardApplications\\CreditCardApplicationEvaluator.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAABgAAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T03:21:38.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CreditCardApplicationEvaluatorShould.cs",
+              "DocumentMoniker": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications.Tests\\CreditCardApplicationEvaluatorShould.cs",
+              "RelativeDocumentMoniker": "CreditCardApplications.Tests\\CreditCardApplicationEvaluatorShould.cs",
+              "ToolTip": "C:\\Users\\nickk_o\\source\\repos\\Learning\\MockingProject\\CreditCardApplications.Tests\\CreditCardApplicationEvaluatorShould.cs",
+              "RelativeToolTip": "CreditCardApplications.Tests\\CreditCardApplicationEvaluatorShould.cs",
+              "ViewState": "AQIAACEBAAAAAAAAAAAAwCoBAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T06:30:32.256Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

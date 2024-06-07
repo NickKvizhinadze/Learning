@@ -1,0 +1,11 @@
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\bin\Debug\net8.0\TitanicExplorer.Data.deps.json
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\bin\Debug\net8.0\TitanicExplorer.Data.dll
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\bin\Debug\net8.0\TitanicExplorer.Data.pdb
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\TitanicExplorer.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\TitanicExplorer.Data.AssemblyInfoInputs.cache
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\TitanicExplorer.Data.AssemblyInfo.cs
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\TitanicExplorer.Data.csproj.CoreCompileInputs.cache
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\TitanicExplorer.Data.dll
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\refint\TitanicExplorer.Data.dll
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\TitanicExplorer.Data.pdb
+C:\Users\nickk_o\source\repos\Learning\ExpressionTrees\TitanicExplorer.Data\obj\Debug\net8.0\ref\TitanicExplorer.Data.dll

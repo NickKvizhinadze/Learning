@@ -1,0 +1,86 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "TitanicExplorer/1.0.0": {
+        "dependencies": {
+          "AgileObjects.ReadableExpressions": "3.3.0",
+          "System.Linq.Dynamic.Core": "1.4.0",
+          "TitanicExplorer.Data": "1.0.0"
+        },
+        "runtime": {
+          "TitanicExplorer.dll": {}
+        }
+      },
+      "AgileObjects.NetStandardPolyfills/1.6.0": {
+        "runtime": {
+          "lib/netstandard2.0/AgileObjects.NetStandardPolyfills.dll": {
+            "assemblyVersion": "1.6.0.0",
+            "fileVersion": "1.6.0.0"
+          }
+        }
+      },
+      "AgileObjects.ReadableExpressions/3.3.0": {
+        "dependencies": {
+          "AgileObjects.NetStandardPolyfills": "1.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AgileObjects.ReadableExpressions.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
+      "System.Linq.Dynamic.Core/1.4.0": {
+        "runtime": {
+          "lib/net8.0/System.Linq.Dynamic.Core.dll": {
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
+          }
+        }
+      },
+      "TitanicExplorer.Data/1.0.0": {
+        "runtime": {
+          "TitanicExplorer.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TitanicExplorer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AgileObjects.NetStandardPolyfills/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Izh9O0nQ9YIEJH9hBf4NeIDsSFR9c7olaI7ZPloKpotjcxXbV6wPQcG18FZ1CF3L9sKS/u9NR7mZDH9T1785mA==",
+      "path": "agileobjects.netstandardpolyfills/1.6.0",
+      "hashPath": "agileobjects.netstandardpolyfills.1.6.0.nupkg.sha512"
+    },
+    "AgileObjects.ReadableExpressions/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hO+ggJpH4CkOWHbrscZX3KjiOxANUebEZ+j+FDhqNXNp/rYHdL1q5XEcSuSFdq9Tmg7aNKVTs8PKtfMnWnAIUA==",
+      "path": "agileobjects.readableexpressions/3.3.0",
+      "hashPath": "agileobjects.readableexpressions.3.3.0.nupkg.sha512"
+    },
+    "System.Linq.Dynamic.Core/1.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R96BivaBWI3rwU2EHdj9Gn1TavlJS8W476iRtwStgmsAoe3uRuo1IWqiVdjlEbEetQ/bxOni8BHabQBA0yveTw==",
+      "path": "system.linq.dynamic.core/1.4.0",
+      "hashPath": "system.linq.dynamic.core.1.4.0.nupkg.sha512"
+    },
+    "TitanicExplorer.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
