@@ -10,59 +10,63 @@ namespace Dometrain.EFCore.API.Data.EntityMappings
         public void Configure(EntityTypeBuilder<Movie> builder)
         {
             builder
-                .ToTable("Movies")
-                .HasQueryFilter(movie => movie.ReleaseDate >= new DateTime(1999, 1, 1))
+                .UseTphMappingStrategy()
+                .HasQueryFilter(movie => movie.ReleaseDate >= new DateTime(1990, 1, 1))
                 .HasKey(movie => movie.Identifier);
 
+            builder.HasAlternateKey(movie => new { movie.Title, movie.ReleaseDate });
+            
             builder.Property(movie => movie.Title)
                 .HasColumnType("varchar")
                 .HasMaxLength(100)
                 .IsRequired();
-
+        
             builder.Property(movie => movie.ReleaseDate)
                 .HasColumnType("char(8)")
                 .HasConversion(new DateTimeToChar8Converter());
-
+        
             builder.Property(movie => movie.Synopsis)
                 .HasColumnType("varchar(max)")
                 .HasColumnName("Plot");
-
+        
             builder.Property(movie => movie.AgeRating)
                 .HasColumnType("char(32)")
                 .HasConversion<string>();
-
-            builder.OwnsOne(movie => movie.Director)
-                .ToTable("Movie_Directors");
-
-            builder.OwnsMany(movie => movie.Actors)
-                .ToTable("Movie_Actors");
-
+            
+            builder.Property(movie => movie.MainGenreName)
+                .HasColumnType("varchar")
+                .HasMaxLength(256);
+            
             builder
                 .HasOne(movie => movie.Genre)
                 .WithMany(genre => genre.Movies)
-                .HasPrincipalKey(genre => genre.Id)
-                .HasForeignKey(movie => movie.MainGenreId);
-
+                .HasPrincipalKey(genre => genre.Name)
+                .HasForeignKey(movie => movie.MainGenreName);
+        
             //Seeding the data
-            builder.HasData(new Movie
-            {
-                Identifier = 1,
-                Title = "Fight Club",
-                ReleaseDate = new DateTime(1999, 09, 10),
-                Synopsis = "Ed Norton and Brad Pitt have a couple of fist fights with each other.",
-                MainGenreId = 1,
-                AgeRating = AgeRating.Adolescent
-            });
+            // builder.HasData(new Movie
+            // {
+            //     Identifier = 1,
+            //     Title = "Fight Club",
+            //     ReleaseDate = new DateTime(1999, 09, 10),
+            //     Synopsis = "Ed Norton and Brad Pitt have a couple of fist fights with each other.",
+            //     MainGenreId = 1,
+            //     AgeRating = AgeRating.Adolescent
+            // });
+        }
+    }
+    
+    public class CinemaMovieMapping : IEntityTypeConfiguration<CinemaMovie>
+    {
+        public void Configure(EntityTypeBuilder<CinemaMovie> builder)
+        {
+        }
+    }
 
-
-            builder.OwnsOne(movie => movie.Director)
-                .HasData(new { MovieIdentifier = 1, FirstName = "David", LastName = "Fincher" });
-
-            builder.OwnsMany(movie => movie.Actors)
-                .HasData(
-                new { MovieIdentifier = 1, Id = 1, FirstName = "Edward", LastName = "Norton" },
-                new { MovieIdentifier = 1, Id = 2, FirstName = "Brad", LastName = "Pitt" }
-                );
+    public class TelevisionMovieMapping : IEntityTypeConfiguration<TelevisionMovie>
+    {
+        public void Configure(EntityTypeBuilder<TelevisionMovie> builder)
+        {
         }
     }
 }

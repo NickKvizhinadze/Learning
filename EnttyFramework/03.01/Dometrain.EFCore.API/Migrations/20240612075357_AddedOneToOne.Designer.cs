@@ -4,6 +4,7 @@ using Dometrain.EFCore.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dometrain.EFCore.API.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    partial class MoviesContextModelSnapshot : ModelSnapshot
+    [Migration("20240612075357_AddedOneToOne")]
+    partial class AddedOneToOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,27 +24,6 @@ namespace Dometrain.EFCore.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Dometrain.EFCore.API.Models.Actor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Actors");
-                });
 
             modelBuilder.Entity("Dometrain.EFCore.API.Models.ExternalInformation", b =>
                 {
@@ -73,11 +55,6 @@ namespace Dometrain.EFCore.API.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("CreatedAt");
-
-                    b.Property<bool>("Deleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -135,8 +112,6 @@ namespace Dometrain.EFCore.API.Migrations
 
                     b.HasKey("Identifier");
 
-                    b.HasAlternateKey("Title", "ReleaseDate");
-
                     b.HasIndex("MainGenreName");
 
                     b.ToTable("Movies");
@@ -144,21 +119,6 @@ namespace Dometrain.EFCore.API.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Movie");
 
                     b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("Movie_Actor", b =>
-                {
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ActorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MovieId", "ActorId");
-
-                    b.HasIndex("ActorId");
-
-                    b.ToTable("Movie_Actor");
                 });
 
             modelBuilder.Entity("Dometrain.EFCore.API.Models.CinemaMovie", b =>
@@ -201,21 +161,6 @@ namespace Dometrain.EFCore.API.Migrations
                         .HasPrincipalKey("Name");
 
                     b.Navigation("Genre");
-                });
-
-            modelBuilder.Entity("Movie_Actor", b =>
-                {
-                    b.HasOne("Dometrain.EFCore.API.Models.Actor", null)
-                        .WithMany()
-                        .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Dometrain.EFCore.API.Models.Movie", null)
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dometrain.EFCore.API.Models.Genre", b =>

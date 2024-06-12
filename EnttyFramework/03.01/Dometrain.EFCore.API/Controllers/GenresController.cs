@@ -16,6 +16,21 @@ public class GenresController(IGenreRepository repository, IBatchGenreService ba
         return Ok(await repository.GetAll());
     }
 
+    [HttpGet("from-query")]
+    [ProducesResponseType(typeof(IEnumerable<Genre>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllFromQuery()
+    {
+        return Ok(await repository.GetAllFromQuery());
+    }
+
+    [HttpGet("names")]
+    [ProducesResponseType(typeof(IEnumerable<GenreName>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetNames()
+    {
+        return Ok(await repository.GetNames());
+    }
+    
+    
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(Genre), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
