@@ -7,6 +7,7 @@ namespace Dometrain.EfCore.API.Repositories;
 public interface IGenreRepository
 {
     Task<IEnumerable<Genre>> GetAll();
+    Task<IEnumerable<Genre>> GetAll(IEnumerable<int> ids);
     Task<Genre?> Get(int id);
     Task<Genre> Create(Genre genre);
     Task<Genre?> Update(int id, Genre genre);
@@ -21,6 +22,11 @@ public class GenreRepository(MoviesContext context, IUnitOfWorkManager unitOfWor
     public async Task<IEnumerable<Genre>> GetAll()
     {
         return await context.Genres.ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Genre>> GetAll(IEnumerable<int> ids)
+    {
+        return await context.Genres.Where(genre => ids.Contains(genre.Id)).ToListAsync();
     }
 
     public async Task<Genre?> Get(int id)
@@ -46,6 +52,7 @@ public class GenreRepository(MoviesContext context, IUnitOfWorkManager unitOfWor
             return null;
 
         existingGenre.Name = genre.Name;
+        existingGenre.Description = genre.Description;
 
         if(!unitOfWorkManager.IsUnitOfWorkStarted)
             await context.SaveChangesAsync();

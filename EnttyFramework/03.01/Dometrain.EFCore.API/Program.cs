@@ -35,7 +35,9 @@ builder.Services.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
 builder.Services.AddDbContext<MoviesContext>(options =>
 {
     options
-    .UseSqlServer(builder.Configuration.GetConnectionString("MoviesContext"));
+    .UseSqlServer(
+        builder.Configuration.GetConnectionString("MoviesContext"),
+        sqlBuilder => sqlBuilder.MaxBatchSize(50));
 },
 ServiceLifetime.Scoped,
 ServiceLifetime.Singleton);

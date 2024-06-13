@@ -18,6 +18,9 @@ namespace Dometrain.EFCore.API.Data.EntityMappings
                 .HasColumnType("varchar")
                 .HasMaxLength(256);
 
+            builder.Property(g => g.ConcurrencyToken)
+                // .IsConcurrencyToken() To configure custom concurrency token
+                .IsRowVersion();
 
             builder
                 .Property<bool>("Deleted")

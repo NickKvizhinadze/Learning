@@ -7,6 +7,7 @@ namespace Dometrain.EFCore.API.Services
     public interface IBatchGenreService
     {
         Task<IEnumerable<Genre>> CreateGenres(IEnumerable<Genre> genres);
+        Task<object?> UpdateGenres(List<Genre> genres);
     }
 
     public class BatchGenreService(IGenreRepository genreRepository, IUnitOfWorkManager uowManager) : IBatchGenreService
@@ -21,6 +22,24 @@ namespace Dometrain.EFCore.API.Services
                 response.Add(await genreRepository.Create(genre));
             }
 
+            await uowManager.SaveChangesAsync();
+            return response;
+        }
+
+        public async Task<object?> UpdateGenres(List<Genre> genres)
+        {
+            List<Genre> response = new();
+            uowManager.StartUnitOfWork();
+            
+            var existingGenres = await genreRepository.GetAll(genres.Select(g => g.Id));
+            
+            foreach (var genre in genres)
+            {
+                var updatedGenre = await genreRepository.Update(genre.Id, genre);
+                if(updatedGenre is not null)
+                    response.Add(updatedGenre);
+            }
+            
             await uowManager.SaveChangesAsync();
             return response;
         }
