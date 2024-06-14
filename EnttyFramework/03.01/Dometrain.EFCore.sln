@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dometrain.EFCore.SimpleAPI"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dometrain.EFCore.Tests", "Dometrain.EFCore.Tests\Dometrain.EFCore.Tests.csproj", "{75CA3D4C-7180-444F-9209-A3805FF2FF53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.EFCore.DatabaseFirst", "Dometrain.EFCore.DatabaseFirst\Dometrain.EFCore.DatabaseFirst.csproj", "{B3653717-1C41-41D5-89FB-C355E30AAFAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{75CA3D4C-7180-444F-9209-A3805FF2FF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75CA3D4C-7180-444F-9209-A3805FF2FF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75CA3D4C-7180-444F-9209-A3805FF2FF53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3653717-1C41-41D5-89FB-C355E30AAFAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3653717-1C41-41D5-89FB-C355E30AAFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3653717-1C41-41D5-89FB-C355E30AAFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3653717-1C41-41D5-89FB-C355E30AAFAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
