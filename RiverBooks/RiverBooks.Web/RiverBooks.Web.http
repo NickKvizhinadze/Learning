@@ -1,6 +1,44 @@
 @RiverBooks.Web_HostAddress = http://localhost:5104
 
-GET {{RiverBooks.Web_HostAddress}}/weatherforecast/
+GET {{RiverBooks.Web_HostAddress}}/books
 Accept: application/json
 
 ###
+
+@BookID=a89f6cd7-4693-457b-9009-02205dbbfe45
+GET {{RiverBooks.Web_HostAddress}}/books/{{BookID}}
+Accept: application/json
+
+###
+
+POST {{RiverBooks.Web_HostAddress}}/books
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "b89f6cd7-4693-457b-9009-02205dbbfe45",
+  "title": "Modular Monoliths - Getting Started",
+  "author": "Steve Smith",
+  "price": 29.99
+}
+
+###
+
+# Test the location header
+GET {{RiverBooks.Web_HostAddress}}/books/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Accept: application/json
+
+###
+
+DELETE {{RiverBooks.Web_HostAddress}}/books/b89f6cd7-4693-457b-9009-02205dbbfe45
+Accept: application/json
+
+###
+
+POST {{RiverBooks.Web_HostAddress}}/books/b89f6cd7-4693-457b-9009-02205dbbfe45/pricehistory
+Accept: application/json
+Content-Type: application/json
+
+{
+  "newPrice": -9.99
+}
