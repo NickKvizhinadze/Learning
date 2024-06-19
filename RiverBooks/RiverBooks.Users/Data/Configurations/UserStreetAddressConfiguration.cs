@@ -4,11 +4,13 @@ using RiverBooks.Users.Entities;
 
 namespace RiverBooks.Users.Data.Configurations;
 
-internal class CartItemConfiguration: IEntityTypeConfiguration<CartItem>
+internal class UserStreetAddressConfiguration: IEntityTypeConfiguration<UserStreetAddress>
 {
-    public void Configure(EntityTypeBuilder<CartItem> builder)
+    public void Configure(EntityTypeBuilder<UserStreetAddress> builder)
     {
         builder.Property(item => item.Id)
             .ValueGeneratedNever();
+
+        builder.ComplexProperty(item => item.StreetAddress);
     }
 }

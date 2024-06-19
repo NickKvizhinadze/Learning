@@ -1,23 +1,15 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using RiverBooks.Users.Entities;
+using RiverBooks.OrderProcessing.Entities;
 
-namespace RiverBooks.Users.Data;
+namespace RiverBooks.OrderProcessing.Data;
 
-public class UsersDbContext(DbContextOptions<UsersDbContext> context)
-    : IdentityDbContext(context)
+internal class OrderProcessingDbContext(DbContextOptions<OrderProcessingDbContext> context)
+    : DbContext(context)
 {
-    public DbSet<ApplicationUser> ApplicationUser { get; set; }
-
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
-        base.OnConfiguring(optionsBuilder);
-    }
-
+    public DbSet<Order> Orders { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema(DataSchemaConstants.SCHEMA);

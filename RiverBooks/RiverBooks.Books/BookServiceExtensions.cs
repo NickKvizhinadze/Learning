@@ -11,7 +11,7 @@ namespace RiverBooks.Books;
 
 public static class BookServiceExtensions
 {
-    public static IServiceCollection AddBookService(
+    public static IServiceCollection AddBookModuleService(
         this IServiceCollection services,
         ConfigurationManager configuration,
         ILogger logger,

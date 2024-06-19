@@ -4,7 +4,7 @@ using RiverBooks.Users.Entities;
 using RiverBooks.Users.Models;
 using RiverBooks.Users.Repositories;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.ListItems;
 
 internal class ListCartItemQueryHandler(IApplicationUserRepository userRepository)
     : IRequestHandler<ListCartItemsQuery, Result<List<CartItemDto>>>

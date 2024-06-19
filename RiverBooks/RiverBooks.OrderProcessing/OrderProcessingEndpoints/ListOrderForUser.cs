@@ -2,16 +2,16 @@
 using Ardalis.Result;
 using FastEndpoints;
 using MediatR;
-using RiverBooks.Users.UseCases.ListItems;
+using RiverBooks.OrderProcessing.UseCases;
 
-namespace RiverBooks.Users.CartEndpoints;
+namespace RiverBooks.OrderProcessing.OrderProcessingEndpoints;
 
-internal class ListCartItems(IMediator mediator)
-    : EndpointWithoutRequest<CartResponse>
+internal class ListOrderForUser(IMediator mediator)
+    : EndpointWithoutRequest<ListOrderForUserResponse>
 {
     public override void Configure()
     {
-        Get("/cart");
+        Get("/orders");
         Claims("EmailAddress");
     }
 
@@ -19,7 +19,7 @@ internal class ListCartItems(IMediator mediator)
     {
         var email = User.FindFirstValue("EmailAddress");
 
-        var command = new ListCartItemsQuery(email);
+        var command = new ListOrdersForUserQuery(email);
 
         var result = await mediator.Send(command, cancellationToken);
 
@@ -29,6 +29,10 @@ internal class ListCartItems(IMediator mediator)
             return;
         }
 
-        await SendOkAsync(new CartResponse(result.Value), cancellation: cancellationToken);
+        var response = new ListOrderForUserResponse
+        {
+            Orders = result.Value
+        };
+        await SendOkAsync(response, cancellation: cancellationToken);
     }
 }

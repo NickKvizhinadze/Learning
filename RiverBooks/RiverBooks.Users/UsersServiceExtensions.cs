@@ -11,7 +11,7 @@ namespace RiverBooks.Users;
 
 public static class UsersServiceExtensions
 {
-    public static IServiceCollection AddUserService(
+    public static IServiceCollection AddUserModuleService(
         this IServiceCollection services,
         ConfigurationManager configuration,
         ILogger logger,
