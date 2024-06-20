@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
+using RiverBooks.OrderProcessing.Interfaces;
 using RiverBooks.OrderProcessing.Models;
-using RiverBooks.OrderProcessing.Repositories;
 
 namespace RiverBooks.OrderProcessing.UseCases;
 

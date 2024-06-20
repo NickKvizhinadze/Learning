@@ -1,8 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using RiverBooks.Users.Entities;
+using RiverBooks.Users.Interfaces;
 using RiverBooks.Users.Models;
-using RiverBooks.Users.Repositories;
 
 namespace RiverBooks.Users.UseCases.ListItems;
 

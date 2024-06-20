@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using RiverBooks.Users.Repositories;
 using RiverBooks.OrderProcessing.Contracts;
+using RiverBooks.Users.Interfaces;
 
 namespace RiverBooks.Users.UseCases.Checkout;
 

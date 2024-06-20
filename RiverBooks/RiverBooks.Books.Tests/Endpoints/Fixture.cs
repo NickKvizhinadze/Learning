@@ -1,4 +1,5 @@
 ﻿using FastEndpoints.Testing;
+using RiverBooks.Web;
 using Xunit.Abstractions;
 
 namespace RiverBooks.Books.Tests.Endpoints;

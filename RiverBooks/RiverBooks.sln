@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.OrderProcessing"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.OrderProcessing.Contracts", "RiverBooks.OrderProcessing.Contracts\RiverBooks.OrderProcessing.Contracts.csproj", "{41C2AD18-8FE8-4A32-8AA0-62BC76437B27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Users.Contracts", "RiverBooks.Users.Contracts\RiverBooks.Users.Contracts.csproj", "{EC5643EE-5D0E-4C11-923B-E474CE0816AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.SharedKernel", "RiverBooks.SharedKernel\RiverBooks.SharedKernel.csproj", "{9BAE050C-E49F-4C42-8997-B20215025AAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +70,14 @@ Global
 		{41C2AD18-8FE8-4A32-8AA0-62BC76437B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41C2AD18-8FE8-4A32-8AA0-62BC76437B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41C2AD18-8FE8-4A32-8AA0-62BC76437B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC5643EE-5D0E-4C11-923B-E474CE0816AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC5643EE-5D0E-4C11-923B-E474CE0816AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC5643EE-5D0E-4C11-923B-E474CE0816AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC5643EE-5D0E-4C11-923B-E474CE0816AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BAE050C-E49F-4C42-8997-B20215025AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BAE050C-E49F-4C42-8997-B20215025AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BAE050C-E49F-4C42-8997-B20215025AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BAE050C-E49F-4C42-8997-B20215025AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E2D39A99-A0C1-489D-8D4B-319DD69D6A7D} = {0B28A4A1-C40C-4D0E-A1FE-F43C9ADB01B5}
@@ -74,5 +86,6 @@ Global
 		{8A042E64-90E4-46CC-A95B-10F815154770} = {0B28A4A1-C40C-4D0E-A1FE-F43C9ADB01B5}
 		{20E246C7-3A5B-4734-BE58-FC28A49A61D0} = {EFF6E55D-621C-410D-8689-D1C2E22A7593}
 		{41C2AD18-8FE8-4A32-8AA0-62BC76437B27} = {EFF6E55D-621C-410D-8689-D1C2E22A7593}
+		{EC5643EE-5D0E-4C11-923B-E474CE0816AE} = {9A450FEC-9A4F-406F-9214-0AFE7097EFB6}
 	EndGlobalSection
 EndGlobal

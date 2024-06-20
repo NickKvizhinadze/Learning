@@ -1,8 +1,8 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using RiverBooks.Users.Entities;
-using RiverBooks.Users.Repositories;
+using RiverBooks.Users.Domain;
+using RiverBooks.Users.Interfaces;
 
 namespace RiverBooks.Users.UseCases.User;
 
