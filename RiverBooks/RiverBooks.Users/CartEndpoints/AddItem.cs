@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
 using FastEndpoints;
 using MediatR;
 using RiverBooks.Users.UseCases;
@@ -26,6 +27,8 @@ internal class AddItem(IMediator mediator)
 
         if (result.Status == ResultStatus.Unauthorized)
             await SendUnauthorizedAsync(cancellation: cancellationToken);
+        else if (result.Status == ResultStatus.Invalid)
+            await SendResultAsync(result.ToMinimalApiResult());
         else
             await SendOkAsync(cancellation: cancellationToken);
     }
