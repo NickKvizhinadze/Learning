@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using RiverBooks.Users.Domain;
 using RiverBooks.Users.Interfaces;
 
-namespace RiverBooks.Users.UseCases.User;
+namespace RiverBooks.Users.UseCases.User.AddAddresses;
 
 internal class AddAddressToUserHandler(
     IApplicationUserRepository userRepository,

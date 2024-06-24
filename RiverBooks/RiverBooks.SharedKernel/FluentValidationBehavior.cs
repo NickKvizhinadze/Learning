@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace RiverBooks.SharedKernel;
 
-public class FluentValidationBehaivior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
+public class FluentValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {

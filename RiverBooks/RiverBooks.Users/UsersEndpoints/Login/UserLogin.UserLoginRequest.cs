@@ -1,7 +1,7 @@
 ﻿using FastEndpoints;
 using FluentValidation;
 
-namespace RiverBooks.Users.UsersEndpoints;
+namespace RiverBooks.Users.UsersEndpoints.Login;
 
 public record UserLoginRequest(string Email, string Password);
 

@@ -16,7 +16,8 @@ public class CartItem
     {
     }
     
-    public Guid Id { get; private set; }
+    public Guid Id { get; private set; } = Guid.NewGuid();
+
     public Guid BookId { get; private set; }
     public string Description { get; private set; } = string.Empty;
     public int Quantity { get; private set; }

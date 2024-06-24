@@ -4,7 +4,7 @@ using FastEndpoints.Security;
 using Microsoft.AspNetCore.Identity;
 using RiverBooks.Users.Domain;
 
-namespace RiverBooks.Users.UsersEndpoints;
+namespace RiverBooks.Users.UsersEndpoints.Login;
 
 internal class UserLogin(UserManager<ApplicationUser> userManager) 
     : Endpoint<UserLoginRequest>

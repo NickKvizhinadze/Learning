@@ -1,6 +1,6 @@
 ﻿using RiverBooks.Users.Models;
 
-namespace RiverBooks.Users.UsersEndpoints;
+namespace RiverBooks.Users.UsersEndpoints.ListAddress;
 
 public class ListAddressResponse
 {

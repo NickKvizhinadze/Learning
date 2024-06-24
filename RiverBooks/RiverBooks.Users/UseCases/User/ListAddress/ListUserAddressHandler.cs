@@ -4,11 +4,11 @@ using Microsoft.Extensions.Logging;
 using RiverBooks.Users.Interfaces;
 using RiverBooks.Users.Models;
 
-namespace RiverBooks.Users.UseCases.User;
+namespace RiverBooks.Users.UseCases.User.ListAddress;
 
 internal class ListUserAddressHandler(
     IApplicationUserRepository userRepository,
-    ILogger<AddAddressToUserHandler> logger)
+    ILogger<ListUserAddressHandler> logger)
     : IRequestHandler<ListUserAddressQuery, Result<List<UserAddressDto>>>
 {
     public async Task<Result<List<UserAddressDto>>> Handle(ListUserAddressQuery request, CancellationToken cancellationToken)

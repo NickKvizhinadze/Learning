@@ -16,7 +16,7 @@ namespace RiverBooks.SharedKernel
         
         public static IServiceCollection AddMediatRValidationBehaviors(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehaivior<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 
             return services;
         }

@@ -3,8 +3,9 @@ using Ardalis.Result;
 using FastEndpoints;
 using MediatR;
 using RiverBooks.Users.UseCases.User;
+using RiverBooks.Users.UseCases.User.ListAddress;
 
-namespace RiverBooks.Users.UsersEndpoints;
+namespace RiverBooks.Users.UsersEndpoints.ListAddress;
 
 public class ListAddress(IMediator mediator) : EndpointWithoutRequest<ListAddressResponse>
 {

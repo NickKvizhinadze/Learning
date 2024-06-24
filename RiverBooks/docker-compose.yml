@@ -7,6 +7,23 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+  papercut:
+    image: jijiechen/papercut:latest
+    container_name: papercut
+    ports:
+      - "25:25" # Web interface
+      - "37408:37408" # Print service
+    volumes:
+      - papercut_data:/opt/papercut/data
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
 
 volumes:
   redis_data:
+  papercut_data:
+  mongo_data:
