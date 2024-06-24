@@ -5,6 +5,7 @@ using FastEndpoints.Swagger;
 using RiverBooks.Books;
 using RiverBooks.EmailSending;
 using RiverBooks.OrderProcessing;
+using RiverBooks.Reporting;
 using RiverBooks.SharedKernel;
 using RiverBooks.Users;
 using RiverBooks.Users.UseCases.AddItem;
@@ -37,6 +38,7 @@ builder.Services.AddBookModuleService(builder.Configuration, logger, mediatRAsse
 builder.Services.AddUserModuleService(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddOrderModuleService(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddEmailSendingModuleService(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddReportingModuleService(builder.Configuration, logger, mediatRAssemblies);
 
 // Setup MediatR
 builder.Services.AddMediatR(cfg => 

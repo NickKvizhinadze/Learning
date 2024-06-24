@@ -27,7 +27,7 @@ internal class OrderConfiguration: IEntityTypeConfiguration<Order>
                 .HasMaxLength(DataSchemaConstants.COUNTRY_MAXLENGTH);
         });
         
-        builder.ComplexProperty(o => o.BilligAddress, address =>
+        builder.ComplexProperty(o => o.BillingAddress, address =>
         {
             address.Property(a => a.Street1)
                 .HasMaxLength(DataSchemaConstants.STREET_MAXLENGTH);

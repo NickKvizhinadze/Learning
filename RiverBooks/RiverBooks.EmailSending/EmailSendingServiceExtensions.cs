@@ -2,7 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-using RiverBooks.EmailSending.Interfaces;
+using RiverBooks.EmailSending.EmailBackgroundService;
+using RiverBooks.EmailSending.Integrations;
 using Serilog;
 
 namespace RiverBooks.EmailSending;
@@ -19,7 +20,8 @@ public static class EmailSendingServiceExtensions
         services.AddMongoDb(configuration);
         
         services.AddTransient<ISendEmail, MimeKitEmailSender>();
-        services.AddTransient<IOutboxService, MongoDbOutboxService>();
+        services.AddTransient<IQueueEmailsInOutboxService, MongoDbQueueEmailsOutboxService>();
+        services.AddTransient<IGetEmailsFromOutboxService, MongoDbGetEmailsFromOutboxService>();
         services.AddTransient<ISendEmailsFromOutboxService, DefaultSendEmailsFromOutboxService>();
 
 

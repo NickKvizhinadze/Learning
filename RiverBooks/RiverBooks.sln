@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.EmailSending", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.EmailSending.Contracts", "RiverBooks.EmailSending.Contracts\RiverBooks.EmailSending.Contracts.csproj", "{37D16E0F-AE0F-4F3E-927A-4D7976F1C2F4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reporting Module", "Reporting Module", "{A880E6BA-8C2F-40D3-A718-23099E523809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Reporting", "RiverBooks.Reporting\RiverBooks.Reporting.csproj", "{2642200E-5F33-4F8E-811C-8E6493D7265A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +102,10 @@ Global
 		{37D16E0F-AE0F-4F3E-927A-4D7976F1C2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37D16E0F-AE0F-4F3E-927A-4D7976F1C2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37D16E0F-AE0F-4F3E-927A-4D7976F1C2F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2642200E-5F33-4F8E-811C-8E6493D7265A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2642200E-5F33-4F8E-811C-8E6493D7265A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2642200E-5F33-4F8E-811C-8E6493D7265A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2642200E-5F33-4F8E-811C-8E6493D7265A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E2D39A99-A0C1-489D-8D4B-319DD69D6A7D} = {0B28A4A1-C40C-4D0E-A1FE-F43C9ADB01B5}
@@ -110,5 +118,6 @@ Global
 		{E7E172DF-A7B9-4603-871A-883E19CA5626} = {EFF6E55D-621C-410D-8689-D1C2E22A7593}
 		{AB24EBBE-57B1-4D45-837B-39707F48D662} = {4510F757-27BD-4BDA-9AB6-584C5CF66677}
 		{37D16E0F-AE0F-4F3E-927A-4D7976F1C2F4} = {4510F757-27BD-4BDA-9AB6-584C5CF66677}
+		{2642200E-5F33-4F8E-811C-8E6493D7265A} = {A880E6BA-8C2F-40D3-A718-23099E523809}
 	EndGlobalSection
 EndGlobal

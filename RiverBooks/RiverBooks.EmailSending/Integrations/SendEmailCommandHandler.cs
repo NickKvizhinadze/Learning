@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using RiverBooks.EmailSending.Contracts;
-using RiverBooks.EmailSending.Interfaces;
+using RiverBooks.EmailSending.EmailBackgroundService;
 
 namespace RiverBooks.EmailSending.Integrations;
 

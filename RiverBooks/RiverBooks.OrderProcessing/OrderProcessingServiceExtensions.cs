@@ -19,7 +19,7 @@ public static class OrderProcessingServiceExtensions
         List<Assembly> mediatRAssemblies)
     {
         services.AddDbContext<OrderProcessingDbContext>(opts =>
-            opts.UseSqlServer(configuration.GetConnectionString("OrderProcessingDbContextConnectionString")));
+            opts.UseSqlServer(configuration.GetConnectionString("OrderProcessingConnectionString")));
 
         services.AddScoped<IOrderRepository, EfOrderRepository>();
         services.AddScoped<RedisOrderAddressCache>();

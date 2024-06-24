@@ -1,11 +1,28 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Ardalis.Result;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
-using RiverBooks.EmailSending.Interfaces;
 
-namespace RiverBooks.EmailSending;
+namespace RiverBooks.EmailSending.EmailBackgroundService;
+
+internal interface IGetEmailsFromOutboxService
+{
+    Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity();
+}
+
+internal class MongoDbGetEmailsFromOutboxService(IMongoCollection<EmailOutboxEntity> emailCollection) : IGetEmailsFromOutboxService
+{
+    public async Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity()
+    {
+        var filter = Builders<EmailOutboxEntity>.Filter.Eq(x => x.DateTimeUtcProcessed, null);
+        var entity = await emailCollection.Find(filter).FirstOrDefaultAsync();
+        return entity is null
+            ? Result<EmailOutboxEntity>.NotFound()
+            : Result.Success(entity);
+    }
+}
 
 internal class DefaultSendEmailsFromOutboxService(
-    IOutboxService outboxService,
+    IGetEmailsFromOutboxService outboxService,
     ISendEmail emailSender,
     IMongoCollection<EmailOutboxEntity> emailCollection,
     ILogger<DefaultSendEmailsFromOutboxService> logger) : ISendEmailsFromOutboxService

@@ -1,11 +1,25 @@
 ﻿using Ardalis.Result;
 using MediatR;
+using MongoDB.Driver;
 using RiverBooks.EmailSending.Contracts;
-using RiverBooks.EmailSending.Interfaces;
 
 namespace RiverBooks.EmailSending.Integrations;
 
-internal class QueueEmailToOutboxSendEmailCommandHandler(IOutboxService outboxService) : IRequestHandler<SendEmailCommand, Result<Guid>>
+internal interface IQueueEmailsInOutboxService
+{
+    Task QueueEmailForSending(EmailOutboxEntity entity);
+}
+
+internal class MongoDbQueueEmailsOutboxService(IMongoCollection<EmailOutboxEntity> emailCollection)
+    : IQueueEmailsInOutboxService
+{
+    public async Task QueueEmailForSending(EmailOutboxEntity entity)
+    {
+        await emailCollection.InsertOneAsync(entity);
+    }
+}
+
+internal class QueueEmailToOutboxSendEmailCommandHandler(IQueueEmailsInOutboxService outboxService) : IRequestHandler<SendEmailCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(SendEmailCommand request, CancellationToken cancellationToken)
     {
