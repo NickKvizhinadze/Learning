@@ -1,10 +1,14 @@
-﻿using RiverBooks.Books.Models;
+﻿using Ardalis.Result;
+using Microsoft.Extensions.Logging;
+using RiverBooks.Books.Models;
 using RiverBooks.Books.Entities;
 using RiverBooks.Books.Repositories;
 
 namespace RiverBooks.Books.Services;
 
-internal class BookService(IBookRepository bookRepository) : IBookService
+internal class BookService(
+    IBookRepository bookRepository,
+    ILogger<BookService> logger) : IBookService
 {
     public async Task<List<BookDto>> ListBooksAsync()
     {
@@ -13,22 +17,17 @@ internal class BookService(IBookRepository bookRepository) : IBookService
             .ToList();
 
         return books;
-
-        // return
-        // [
-        //     new BookDto(Guid.NewGuid(), "The Fellowship of the Ring", "J.R.R. Tolkein"),
-        //     new BookDto(Guid.NewGuid(), "The Two Towers", "J.R.R. Tolkein"),
-        //     new BookDto(Guid.NewGuid(), "The Return of the King", "J.R.R. Tolkein")
-        // ];
     }
 
-    public async Task<BookDto?> GetBookByIdAsync(Guid id)
+    public async Task<Result<BookDto>> GetBookByIdAsync(Guid id)
     {
         var book = await bookRepository.GetByIdAsync(id);
-        //TODO: handle not found case
-        return book is null 
-            ? null 
-            : new BookDto(book.Id, book.Title, book.Author, book.Price);
+
+        if (book is not null)
+            return Result.Success(new BookDto(book.Id, book.Title, book.Author, book.Price));
+
+        logger.LogError("Book with id: {id} not found", id);
+        return Result<BookDto>.NotFound();
     }
 
     public async Task CreateBookAsync(BookDto newBook)
@@ -39,26 +38,40 @@ internal class BookService(IBookRepository bookRepository) : IBookService
         await bookRepository.SaveChangesAsync();
     }
 
-    public async Task DeleteBookAsync(Guid id)
+    public async Task<Result> DeleteBookAsync(Guid id)
     {
         var book = await bookRepository.GetByIdAsync(id);
         if (book is not null)
         {
             await bookRepository.DeleteAsync(book);
             await bookRepository.SaveChangesAsync();
+            return Result.Success();
         }
-        //TODO: handle not found case
+
+        logger.LogError("Book with id: {id} not found", id);
+        return Result.NotFound();
     }
 
-    public async Task UpdateBookPriceAsync(Guid id, decimal newPrice)
+    public async Task<Result> UpdateBookPriceAsync(Guid id, decimal newPrice)
     {
-        //TODO: validate price
-        var book = await bookRepository.GetByIdAsync(id);
-        if (book is not null)
+        try
         {
-            book.UpdatePrice(newPrice);
-            await bookRepository.SaveChangesAsync();
+            var book = await bookRepository.GetByIdAsync(id);
+            if (book is not null)
+            {
+                book.UpdatePrice(newPrice);
+                await bookRepository.SaveChangesAsync();
+                return Result.Success();
+            }
+
+            logger.LogError("Book with id: {id} not found", id);
+            return Result.NotFound();
         }
-        //TODO: handle not found case
+        catch (Exception e)
+        {
+            logger.LogError("Book price could not update for book id: {id}, with price {}. Error: {error}", id,
+                newPrice, e.Message);
+            return Result.Error("Internal server error");
+        }
     }
 }

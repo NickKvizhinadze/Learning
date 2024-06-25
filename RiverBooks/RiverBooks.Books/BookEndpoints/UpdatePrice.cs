@@ -1,4 +1,6 @@
-﻿using FastEndpoints;
+﻿using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
+using FastEndpoints;
 using RiverBooks.Books.Models;
 using RiverBooks.Books.Services;
 
@@ -16,8 +18,10 @@ internal class UpdatePrice(IBookService bookService)
     public override async Task HandleAsync(UpdateBookPriceRequest request, CancellationToken cancellationToken)
     {
         await bookService.UpdateBookPriceAsync(request.Id, request.NewPrice);
-        var updatedBook = await bookService.GetBookByIdAsync(request.Id);
-
-        await SendAsync(updatedBook, cancellation: cancellationToken);
+        var updatedBookResult = await bookService.GetBookByIdAsync(request.Id);
+        if (updatedBookResult.IsNotFound())
+            await SendNotFoundAsync(cancellation: cancellationToken);
+        
+        await SendAsync(updatedBookResult.Value, cancellation: cancellationToken);
     }
 }

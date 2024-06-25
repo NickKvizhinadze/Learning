@@ -2,6 +2,6 @@
 
 internal class ListEmailsResponse
 {
-    public int Count { get; set; }
-    public List<EmailOutboxEntity> Emails { get; internal set; } = new();
+    public long Count { get; set; }
+    public List<EmailOutboxDto> Emails { get; internal set; } = new();
 }

@@ -3,13 +3,27 @@ using MongoDB.Driver;
 
 namespace RiverBooks.EmailSending.UseCases.ListEmails;
 
-internal class ListEmailsHandler(IMongoCollection<EmailOutboxEntity> emailCollection)
-    : IRequestHandler<ListEmailsQuery, List<EmailOutboxEntity>>
+internal class EmailOutboxEntityListWrapper
 {
-    public async Task<List<EmailOutboxEntity>> Handle(ListEmailsQuery request, CancellationToken cancellationToken)
+    public long Count { get; set; }
+    public List<EmailOutboxEntity> Emails { get; set; } = new();
+}
+
+internal class ListEmailsHandler(IMongoCollection<EmailOutboxEntity> emailCollection)
+    : IRequestHandler<ListEmailsQuery, (List<EmailOutboxEntity> emails, long count)>
+{
+    public async Task<(List<EmailOutboxEntity> emails, long count)> Handle(ListEmailsQuery request,
+        CancellationToken cancellationToken)
     {
-        //TODO: Implement paging
         var filter = Builders<EmailOutboxEntity>.Filter.Empty;
-        return await emailCollection.Find(filter).ToListAsync(cancellationToken: cancellationToken);
+        var query = emailCollection.Find(filter);
+        var count = await query.CountDocumentsAsync(cancellationToken: cancellationToken);
+
+        var emails = await query
+            .Skip((request.Page - 1) * request.PageSize)
+            .Limit(request.PageSize)
+            .ToListAsync(cancellationToken: cancellationToken);
+
+        return (emails, count);
     }
 }

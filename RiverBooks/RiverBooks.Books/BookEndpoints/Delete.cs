@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using Ardalis.Result.AspNetCore;
+using FastEndpoints;
 using RiverBooks.Books.Models;
 using RiverBooks.Books.Services;
 
@@ -15,8 +16,10 @@ internal class Delete(IBookService bookService)
 
     public override async Task HandleAsync(DeleteBookRequest request, CancellationToken cancellationToken)
     {
-        await bookService.DeleteBookAsync(request.Id);
-
-        await SendNoContentAsync(cancellation: cancellationToken);
+        var result = await bookService.DeleteBookAsync(request.Id);
+        if (result.IsSuccess)
+            await SendNoContentAsync(cancellation: cancellationToken);
+        else
+            await SendAsync(result.ToMinimalApiResult(), cancellation: cancellationToken);
     }
 }
