@@ -1,5 +1,4 @@
-﻿using GymManagement.Application.Services;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace GymManagement.Infrastructure;
 
