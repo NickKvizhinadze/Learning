@@ -14,7 +14,8 @@ public class CreateSubscriptionCommandHandler(
     {
         var subscription = new Subscription
         {
-            Id = Guid.NewGuid()
+            Id = Guid.NewGuid(),
+            SubscriptionType = request.SubscriptionType
         };
         
         await subscriptionsRepository.AddSubscriptionAsync(subscription);
