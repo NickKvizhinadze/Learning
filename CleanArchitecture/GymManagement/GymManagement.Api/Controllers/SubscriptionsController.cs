@@ -1,16 +1,16 @@
-using GymManagement.Application.Subscriptions.Commands.CreateSubscription;
-using GymManagement.Application.Subscriptions.Commands.DeleteSubscription;
-using GymManagement.Application.Subscriptions.Queries.GetSubscription;
-using GymManagement.Contracts.Subscriptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using GymManagement.Contracts.Subscriptions;
+using GymManagement.Application.Subscriptions.Queries.GetSubscription;
+using GymManagement.Application.Subscriptions.Commands.DeleteSubscription;
+using GymManagement.Application.Subscriptions.Commands.CreateSubscription;
 using DomainSubscriptionType = GymManagement.Domain.Subscriptions.SubscriptionType;
 
 namespace GymManagement.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class SubscriptionsController : ControllerBase
+public class SubscriptionsController : ApiController
 {
     private readonly ISender _mediator;
 
@@ -44,7 +44,7 @@ public class SubscriptionsController : ControllerBase
                 new SubscriptionResponse(
                     subscription.Id,
                     ToDto(subscription.SubscriptionType))),
-            error => Problem());
+            Problem);
     }
 
     [HttpGet("{subscriptionId:guid}")]
@@ -58,7 +58,7 @@ public class SubscriptionsController : ControllerBase
             subscription => Ok(new SubscriptionResponse(
                 subscription.Id,
                 ToDto(subscription.SubscriptionType))),
-            error => Problem());
+            Problem);
     }
 
     [HttpDelete("{subscriptionId:guid}")]
@@ -70,7 +70,7 @@ public class SubscriptionsController : ControllerBase
 
         return createSubscriptionResult.Match<IActionResult>(
             _ => NoContent(),
-            _ => Problem());
+            Problem);
     }
 
     private static SubscriptionType ToDto(DomainSubscriptionType subscriptionType)
