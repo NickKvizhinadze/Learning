@@ -7,7 +7,7 @@ namespace GymManagement.Api.Controllers;
 [ApiController]
 public class ApiController: ControllerBase
 {
-    public IActionResult Problem(List<Error> errors)
+    protected IActionResult Problem(List<Error> errors)
     {
         if (errors.Count is 0)
             return Problem();
@@ -18,7 +18,7 @@ public class ApiController: ControllerBase
         return Problem(errors[0]);
     }
 
-    public IActionResult Problem(Error error)
+    protected IActionResult Problem(Error error)
     {
         var statusCode = error.Type switch
         {
@@ -31,7 +31,7 @@ public class ApiController: ControllerBase
         return Problem(statusCode: statusCode, detail: error.Description);
     }
 
-    public IActionResult ValidationProblem(List<Error> errors)
+    private IActionResult ValidationProblem(List<Error> errors)
     {
         var modelStateDictionary = new ModelStateDictionary();
         foreach (var error in errors)
