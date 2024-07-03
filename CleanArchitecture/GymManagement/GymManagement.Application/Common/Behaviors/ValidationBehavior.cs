@@ -10,9 +10,9 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 {
     private readonly IValidator<TRequest>? _validator;
 
-    public ValidationBehavior(IValidator<TRequest>? validator)
+    public ValidationBehavior(IEnumerable<IValidator<TRequest>>? validators)
     {
-        _validator = validator;
+        _validator = validators?.FirstOrDefault();
     }
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,

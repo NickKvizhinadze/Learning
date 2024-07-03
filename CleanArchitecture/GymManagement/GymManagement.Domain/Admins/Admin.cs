@@ -19,6 +19,10 @@ public class Admin : Entity
         SubscriptionId = subscriptionId;
     }
 
+    private Admin()
+    {
+    }
+
     public void SetSubscription(Subscription subscription)
     {
         SubscriptionId.HasValue.Throw().IfTrue();
