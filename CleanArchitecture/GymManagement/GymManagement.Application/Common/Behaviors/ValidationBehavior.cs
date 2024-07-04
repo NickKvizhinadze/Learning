@@ -10,7 +10,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 {
     private readonly IValidator<TRequest>? _validator;
 
-    public ValidationBehavior(IEnumerable<IValidator<TRequest>>? validators)
+    public ValidationBehavior(IEnumerable<IValidator<TRequest>>? validators = null)
     {
         _validator = validators?.FirstOrDefault();
     }

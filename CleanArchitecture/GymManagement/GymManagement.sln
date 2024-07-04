@@ -10,6 +10,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Contracts", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Api", "GymManagement.Api\GymManagement.Api.csproj", "{2DA09F2B-F4E3-4559-89FA-7FDB30617560}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4E89E0E0-12F5-4668-B045-5ED5C960EBE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.TestCommon", "GymManagement.TestCommon\GymManagement.TestCommon.csproj", "{63FC3E49-C608-4C92-BB83-2A06D595D99A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Domain.UnitTests", "GymManagement.Domain.UnitTests\GymManagement.Domain.UnitTests.csproj", "{F42F0305-E374-468B-8BCF-D5EC0409AC25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Application.UnitTests", "GymManagement.Application.UnitTests\GymManagement.Application.UnitTests.csproj", "{D61B9C76-FC41-41EC-A27F-36886919D957}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Application.SubcutaneousTests", "GymManagement.Application.SubcutaneousTests\GymManagement.Application.SubcutaneousTests.csproj", "{AD4EE3ED-8A29-4F64-8DF6-0678D2CBED74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Api.IntegrationTests", "GymManagement.Api.IntegrationTests\GymManagement.Api.IntegrationTests.csproj", "{BD1A555C-19B0-4C80-ADF1-D81E6BCD8AA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +48,32 @@ Global
 		{2DA09F2B-F4E3-4559-89FA-7FDB30617560}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DA09F2B-F4E3-4559-89FA-7FDB30617560}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DA09F2B-F4E3-4559-89FA-7FDB30617560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63FC3E49-C608-4C92-BB83-2A06D595D99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63FC3E49-C608-4C92-BB83-2A06D595D99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63FC3E49-C608-4C92-BB83-2A06D595D99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63FC3E49-C608-4C92-BB83-2A06D595D99A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42F0305-E374-468B-8BCF-D5EC0409AC25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42F0305-E374-468B-8BCF-D5EC0409AC25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42F0305-E374-468B-8BCF-D5EC0409AC25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42F0305-E374-468B-8BCF-D5EC0409AC25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61B9C76-FC41-41EC-A27F-36886919D957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61B9C76-FC41-41EC-A27F-36886919D957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61B9C76-FC41-41EC-A27F-36886919D957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61B9C76-FC41-41EC-A27F-36886919D957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD4EE3ED-8A29-4F64-8DF6-0678D2CBED74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4EE3ED-8A29-4F64-8DF6-0678D2CBED74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4EE3ED-8A29-4F64-8DF6-0678D2CBED74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4EE3ED-8A29-4F64-8DF6-0678D2CBED74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1A555C-19B0-4C80-ADF1-D81E6BCD8AA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1A555C-19B0-4C80-ADF1-D81E6BCD8AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1A555C-19B0-4C80-ADF1-D81E6BCD8AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1A555C-19B0-4C80-ADF1-D81E6BCD8AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{63FC3E49-C608-4C92-BB83-2A06D595D99A} = {4E89E0E0-12F5-4668-B045-5ED5C960EBE9}
+		{F42F0305-E374-468B-8BCF-D5EC0409AC25} = {4E89E0E0-12F5-4668-B045-5ED5C960EBE9}
+		{D61B9C76-FC41-41EC-A27F-36886919D957} = {4E89E0E0-12F5-4668-B045-5ED5C960EBE9}
+		{AD4EE3ED-8A29-4F64-8DF6-0678D2CBED74} = {4E89E0E0-12F5-4668-B045-5ED5C960EBE9}
+		{BD1A555C-19B0-4C80-ADF1-D81E6BCD8AA3} = {4E89E0E0-12F5-4668-B045-5ED5C960EBE9}
 	EndGlobalSection
 EndGlobal

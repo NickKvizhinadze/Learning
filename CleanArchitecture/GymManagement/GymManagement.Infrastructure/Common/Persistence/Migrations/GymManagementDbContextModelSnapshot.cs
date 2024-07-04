@@ -33,7 +33,7 @@ namespace GymManagement.Infrastructure.Common.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
 
                     b.HasData(
                         new
@@ -70,7 +70,7 @@ namespace GymManagement.Infrastructure.Common.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Gyms");
+                    b.ToTable("Gyms", (string)null);
                 });
 
             modelBuilder.Entity("GymManagement.Domain.Subscriptions.Subscription", b =>
@@ -95,7 +95,7 @@ namespace GymManagement.Infrastructure.Common.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subscriptions");
+                    b.ToTable("Subscriptions", (string)null);
                 });
 #pragma warning restore 612, 618
         }

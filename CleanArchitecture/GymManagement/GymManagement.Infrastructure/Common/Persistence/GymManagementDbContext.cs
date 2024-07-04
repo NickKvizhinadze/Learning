@@ -12,14 +12,19 @@ namespace GymManagement.Infrastructure.Common.Persistence;
 
 public class GymManagementDbContext : DbContext, IUnitOfWork
 {
+    private readonly IPublisher _publisher;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     public DbSet<Admin> Admins { get; set; } = null!;
     public DbSet<Subscription> Subscriptions { get; set; } = null!;
     public DbSet<Gym> Gyms { get; set; } = null!;
 
-    public GymManagementDbContext(DbContextOptions options, IHttpContextAccessor httpContextAccessor) : base(options)
+    public GymManagementDbContext(
+        DbContextOptions options,
+        IHttpContextAccessor httpContextAccessor,
+        IPublisher publisher) : base(options)
     {
+        _publisher = publisher;
         _httpContextAccessor = httpContextAccessor;
     }
 
@@ -38,18 +43,30 @@ public class GymManagementDbContext : DbContext, IUnitOfWork
     public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
         CancellationToken cancellationToken = new CancellationToken())
     {
-        int result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-
         var domainEvents = ChangeTracker
             .Entries<Entity>()
             .Select(e => e.Entity.PopDomainEvents())
             .SelectMany(e => e)
             .ToList();
 
-        AddDomainEventsToOfflineProcess(domainEvents);
-        return result;
+        if (IsUserWaitingOnline())
+            AddDomainEventsToOfflineProcess(domainEvents);
+        else
+        {
+            await PublishDomainEvents(cancellationToken, domainEvents);
+        }
+
+        return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
     }
 
+    private bool IsUserWaitingOnline() => _httpContextAccessor.HttpContext is not null;
+    
+    private async Task PublishDomainEvents(CancellationToken cancellationToken, List<IDomainEvent> domainEvents)
+    {
+        foreach (var domainEvent in domainEvents)
+            await _publisher.Publish(domainEvent, cancellationToken);
+    }
+    
     private void AddDomainEventsToOfflineProcess(List<IDomainEvent> domainEvents)
     {
         var domainEventsQueue =
@@ -57,7 +74,7 @@ public class GymManagementDbContext : DbContext, IUnitOfWork
             value is Queue<IDomainEvent> existingQueue
                 ? existingQueue
                 : new Queue<IDomainEvent>();
-        
+
         domainEvents.ForEach(domainEventsQueue.Enqueue);
         _httpContextAccessor.HttpContext!.Items["DomainEventsQueue"] = domainEventsQueue;
     }
