@@ -25,18 +25,35 @@ public static class ContractMapping
             Title = movie.Title,
             YearOfRelease = movie.YearOfRelease,
             Genres = movie.Genres.ToList(),
-            Slug = movie.Slug
+            Slug = movie.Slug,
+            UserRating = movie.UserRating,
+            Rating = movie.Rating
         };
+    }
+
+    public static GetAllMoviesOptions MapToOptions(this GetAllMoviesRequest request)
+    {
+        return new GetAllMoviesOptions
+        {
+            Title = request.Title,
+            Year = request.Year
+        };
+    }
+
+    public static GetAllMoviesOptions WithUserId(this GetAllMoviesOptions options, Guid? userId)
+    {
+        options.UserId = userId;
+        return options;
     }
 
     public static MoviesResponse MapToResponse(this IEnumerable<Movie> movies)
     {
         return new MoviesResponse
         {
-            Items = movies.Select(movie => movie.MapToResponse()) 
+            Items = movies.Select(movie => movie.MapToResponse())
         };
     }
-    
+
     public static Movie MapToMovie(this UpdateMovieRequest request, Guid id)
     {
         return new Movie
@@ -46,5 +63,15 @@ public static class ContractMapping
             YearOfRelease = request.YearOfRelease,
             Genres = request.Genres.ToList()
         };
+    }
+
+    public static IEnumerable<MovieRatingResponse> MapToResponse(this IEnumerable<MovieRating> request)
+    {
+        return request.Select(r => new MovieRatingResponse
+        {
+            MovieId = r.MovieId,
+            Slug = r.Slug,
+            Rating = r.Rating
+        });
     }
 }
