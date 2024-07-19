@@ -104,9 +104,19 @@ public class MoviesRepository(IDbConnectionFactory _dbConnectionFactory) : IMovi
     public async Task<IEnumerable<Movie>> GetAllAsync(GetAllMoviesOptions options, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+
+        var orderClause = string.Empty;
+        if (options.SortField is not null)
+        {
+            orderClause = $"""
+                           ,m.{options.SortField} 
+                           order by m.{options.SortField} {(options.SortOrder == SortOrder.Ascending ? "asc" : "desc")}
+                           """;
+        }
+        
         var movies = await connection
             .QueryAsync(
-                new CommandDefinition("""
+                new CommandDefinition($"""
                                       select m.*, 
                                              string_agg(distinct g.name, ',') as genres, 
                                              round(avg(r.rating), 1) as rating, myr.rating as userrating 
@@ -117,13 +127,17 @@ public class MoviesRepository(IDbConnectionFactory _dbConnectionFactory) : IMovi
                                                                    and myr.userid = @userId
                                       where (@title is null or m.title like ('%' || @title || '%'))
                                       and (@yearOfRelease is null or m.yearofrelease = @yearOfRelease)
-                                      group by m.id, userrating
+                                      group by m.id, userrating {orderClause}
+                                      limit @pageSize 
+                                          offset @pageOffset
                                       """,
                     new
                     {
                         userId = options.UserId,
                         title = options.Title,
-                        yearOfRelease = options.Year
+                        yearOfRelease = options.Year,
+                        pageSize = options.PageSize,
+                        pageOffset = (options.Page - 1) * options.PageSize
                     },
                     cancellationToken:
                     token));
@@ -208,6 +222,25 @@ public class MoviesRepository(IDbConnectionFactory _dbConnectionFactory) : IMovi
                                     select exists(select count(1) from movies where id = @id)
                                   """,
                 new { id },
+                cancellationToken: token)
+        );
+    }
+    
+    public async Task<int> GetCountAsync(string? title, int? year, CancellationToken token = default)
+    {
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        return await connection.ExecuteScalarAsync<int>(
+            new CommandDefinition($"""
+                                  select count(1) 
+                                  from movies m 
+                                  where (@title is null or m.title like ('%' || @title || '%'))
+                                    and (@yearOfRelease is null or m.yearofrelease = @yearOfRelease)
+                                  """,
+                new
+                {
+                    title = title,
+                    yearOfRelease = year
+                },
                 cancellationToken: token)
         );
     }

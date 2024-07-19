@@ -4,7 +4,8 @@ using Movies.Application.Repositories;
 
 namespace Movies.Application.Services;
 
-public class MovieService(IMoviesRepository _repository, IRatingRepository _ratingRepository, IValidator<Movie> _validator) : IMovieService
+public class MovieService(IMoviesRepository _repository, IRatingRepository _ratingRepository, IValidator<Movie> _validator) 
+    : IMovieService
 {
     public async Task<bool> CreateAsync(Movie movie, CancellationToken token = default)
     {
@@ -44,4 +45,7 @@ public class MovieService(IMoviesRepository _repository, IRatingRepository _rati
 
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default) 
         => _repository.DeleteByIdAsync(id, token);
+    
+    public Task<int> GetCountAsync(string? title, int? year, CancellationToken token = default)
+    => _repository.GetCountAsync(title, year, token);
 }
