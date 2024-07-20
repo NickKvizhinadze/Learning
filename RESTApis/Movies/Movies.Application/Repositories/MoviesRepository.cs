@@ -80,7 +80,7 @@ public class MoviesRepository(IDbConnectionFactory _dbConnectionFactory) : IMovi
                                       left join ratings r on m.id = r.movieid
                                       left join ratings myr on m.id = myr.movieid 
                                                                    and myr.userid = @userId
-                                      where id = @id
+                                      where slug = @slug
                                       group by id, userrating
                                       """,
                     new { slug = slug, userId },

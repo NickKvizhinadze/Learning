@@ -1,10 +1,14 @@
 using System.Text;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Movies.Api;
 using Movies.Api.Mapping;
+using Movies.Api.Swagger;
 using Movies.Application;
 using Movies.Application.Database;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -26,23 +30,35 @@ builder.Services.AddAuthentication(opts =>
         ValidAudience = config["Jwt:Audience"],
         ValidateIssuer = true,
         ValidateAudience = true
-        
     };
 });
 
 builder.Services.AddAuthorization(opts =>
 {
     opts.AddPolicy(AuthConstants.AdminUserPolicyName,
-        p=> p.RequireClaim(AuthConstants.AdminUserClaimName, "true"));
+        p => p.RequireClaim(AuthConstants.AdminUserClaimName, "true"));
     opts.AddPolicy(AuthConstants.TrustedMemberPolicyName,
         p => p.RequireAssertion(c =>
             c.User.HasClaim(type: AuthConstants.AdminUserClaimName, value: "true") ||
             c.User.HasClaim(type: AuthConstants.TrustedMemberClaimName, value: "true")));
 });
 
+builder.Services.AddApiVersioning(opts =>
+    {
+        opts.DefaultApiVersion = new ApiVersion(1, 0);
+        opts.AssumeDefaultVersionWhenUnspecified = true;
+        opts.ReportApiVersions = true;
+        opts.ApiVersionReader = new MediaTypeApiVersionReader("api-version");
+    })
+    .AddMvc()
+    .AddApiExplorer();
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+builder.Services.AddSwaggerGen(opts =>
+{
+    opts.OperationFilter<SwaggerDefaultValues>();
+});
 
 builder.Services.AddApplication();
 builder.Services.AddDatabase(builder.Configuration["Database:ConnectionString"]!);
@@ -53,7 +69,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(opts =>
+    {
+        foreach (var description in app.DescribeApiVersions())
+        {
+            opts.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName);;
+        }
+    });
 }
 
 app.UseHttpsRedirection();

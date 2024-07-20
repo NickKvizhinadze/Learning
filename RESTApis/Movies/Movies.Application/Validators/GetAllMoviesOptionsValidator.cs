@@ -1,7 +1,5 @@
-﻿using System.Data;
-using FluentValidation;
+﻿using FluentValidation;
 using Movies.Application.Models;
-using Movies.Application.Repositories;
 
 namespace Movies.Application.Validators;
 
