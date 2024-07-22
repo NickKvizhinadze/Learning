@@ -3,7 +3,8 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Movies.Api;
+using Movies.Api.Auth;
+using Movies.Api.Health;
 using Movies.Api.Mapping;
 using Movies.Api.Swagger;
 using Movies.Application;
@@ -36,12 +37,16 @@ builder.Services.AddAuthentication(opts =>
 builder.Services.AddAuthorization(opts =>
 {
     opts.AddPolicy(AuthConstants.AdminUserPolicyName,
-        p => p.RequireClaim(AuthConstants.AdminUserClaimName, "true"));
+        p => p.AddRequirements(new AdminAuthRequirement(config["ApiKey"]!))
+        );
+    
     opts.AddPolicy(AuthConstants.TrustedMemberPolicyName,
         p => p.RequireAssertion(c =>
             c.User.HasClaim(type: AuthConstants.AdminUserClaimName, value: "true") ||
             c.User.HasClaim(type: AuthConstants.TrustedMemberClaimName, value: "true")));
 });
+
+builder.Services.AddScoped<ApiKeyAuthFilter>();
 
 builder.Services.AddApiVersioning(opts =>
     {
@@ -53,6 +58,19 @@ builder.Services.AddApiVersioning(opts =>
     .AddMvc()
     .AddApiExplorer();
 builder.Services.AddControllers();
+
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>(DatabaseHealthCheck.Name);
+
+builder.Services.AddOutputCache(opts =>
+{
+    opts.AddBasePolicy(c => c.Cache());
+    opts.AddPolicy("MoviesCach", c => c.Cache()
+        .Expire(TimeSpan.FromMinutes(1))
+        .SetVaryByQuery(["title, year, sortBy, page, pageSize"])
+        .Tag("movies")
+    );
+});
 
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 builder.Services.AddSwaggerGen(opts =>
@@ -78,10 +96,16 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.MapHealthChecks("_health");
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// app.UseCors();
+
+app.UseOutputCache();
 
 app.UseMiddleware<ValidationMappingMiddleware>();
 
