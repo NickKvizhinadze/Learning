@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Movies.Api.Auth;
+using Movies.Api.Endpoints;
 using Movies.Api.Health;
 using Movies.Api.Mapping;
 using Movies.Api.Swagger;
@@ -55,9 +56,10 @@ builder.Services.AddApiVersioning(opts =>
         opts.ReportApiVersions = true;
         opts.ApiVersionReader = new MediaTypeApiVersionReader("api-version");
     })
-    .AddMvc()
     .AddApiExplorer();
-builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+// builder.Services.AddControllers();
 
 builder.Services.AddHealthChecks()
     .AddCheck<DatabaseHealthCheck>(DatabaseHealthCheck.Name);
@@ -65,7 +67,7 @@ builder.Services.AddHealthChecks()
 builder.Services.AddOutputCache(opts =>
 {
     opts.AddBasePolicy(c => c.Cache());
-    opts.AddPolicy("MoviesCach", c => c.Cache()
+    opts.AddPolicy("MoviesCache", c => c.Cache()
         .Expire(TimeSpan.FromMinutes(1))
         .SetVaryByQuery(["title, year, sortBy, page, pageSize"])
         .Tag("movies")
@@ -83,6 +85,7 @@ builder.Services.AddDatabase(builder.Configuration["Database:ConnectionString"]!
 
 var app = builder.Build();
 
+app.CreateApiVersionSet();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -109,7 +112,8 @@ app.UseOutputCache();
 
 app.UseMiddleware<ValidationMappingMiddleware>();
 
-app.MapControllers();
+// app.MapControllers();
+app.MapApiEndpoints();
 
 var dbInitializer = app.Services.GetRequiredService<DbInitializer>();
 await dbInitializer.InitializedAsync();
