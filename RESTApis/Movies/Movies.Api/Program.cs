@@ -113,6 +113,7 @@ app.UseOutputCache();
 app.UseMiddleware<ValidationMappingMiddleware>();
 
 // app.MapControllers();
+app.MapDefaultControllerRoute();
 app.MapApiEndpoints();
 
 var dbInitializer = app.Services.GetRequiredService<DbInitializer>();
