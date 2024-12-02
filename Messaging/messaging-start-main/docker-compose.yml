@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+    mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        container_name: messaging-sql
+        ports:
+            - 8003:1433
+        environment:
+            - ACCEPT_EULA=Y
+            - MSSQL_SA_PASSWORD=Paroli1!
+        volumes:
+            - messaging-sql:/var/opt/mssql
+
+    rabbitmq:
+        image: masstransit/rabbitmq:latest
+        container_name: messaging-rabbit
+        ports:
+          - "5672:5672"
+          - "15672:15672"
+        volumes:
+            - messaging-rabbitmq:/var/lib/rabbitmq
+              
+
+volumes:
+    messaging-sql:
+    messaging-rabbitmq:
