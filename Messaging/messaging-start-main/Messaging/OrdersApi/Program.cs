@@ -1,8 +1,10 @@
+using Contracts.Responses;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Orders.Data;
 using Orders.Domain;
 using Orders.Service;
+using OrdersApi.Consumers;
 using OrdersApi.Infrastructure.Mappings;
 using OrdersApi.Service.Clients;
 using OrdersApi.Services;
@@ -37,6 +39,11 @@ namespace OrdersApi
 
             builder.Services.AddMassTransit(x =>
             {
+                x.AddConsumer<OrderCreatedConsumer, OrderCreatedConsumerDefinition>();
+                x.AddConsumer<VerifyOrderConsumer>();
+                
+                x.AddRequestClient<VerifyOrder>();
+                
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     // cfg.Host("rabbitmq://localhost", "/", h =>
@@ -45,6 +52,11 @@ namespace OrdersApi
                     //     h.Password("guest");
                     // });
                     cfg.ConfigureEndpoints(context);
+                    
+                    // cfg.ReceiveEndpoint("order-created", e =>
+                    // {
+                    //     e.ConsumerConfigured<OrderCreatedConsumer>(context);
+                    // });
                 });
             });
 

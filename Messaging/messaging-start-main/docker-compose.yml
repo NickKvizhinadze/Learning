@@ -9,8 +9,8 @@ services:
         environment:
             - ACCEPT_EULA=Y
             - MSSQL_SA_PASSWORD=Paroli1!
-        volumes:
-            - messaging-sql:/var/opt/mssql
+#        volumes:
+#            - messaging-sql:/var/opt/mssql
 
     rabbitmq:
         image: masstransit/rabbitmq:latest
@@ -18,10 +18,10 @@ services:
         ports:
           - "5672:5672"
           - "15672:15672"
-        volumes:
-            - messaging-rabbitmq:/var/lib/rabbitmq
+#        volumes:
+#            - messaging-rabbitmq:/var/lib/rabbitmq
               
 
-volumes:
-    messaging-sql:
-    messaging-rabbitmq:
+#volumes:
+#    messaging-sql:
+#    messaging-rabbitmq:

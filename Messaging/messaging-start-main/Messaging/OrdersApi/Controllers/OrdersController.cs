@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Contracts.Events;
 using Contracts.Models;
+using Contracts.Responses;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Orders.Domain.Entities;
 using Orders.Service;
@@ -14,15 +17,23 @@ namespace OrdersApi.Controllers
         private readonly IOrderService _orderService;
         private readonly IProductStockServiceClient productStockServiceClient;
         private readonly IMapper mapper;
+        private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ISendEndpointProvider _sendEndpointProvider;
+        private readonly IRequestClient<VerifyOrder> _requestClient;
 
         public OrdersController(IOrderService orderService,
             IProductStockServiceClient productStockServiceClient,
-            IMapper mapper
-            )
+            IMapper mapper,
+            IPublishEndpoint publishEndpoint,
+            ISendEndpointProvider sendEndpointProvider,
+            IRequestClient<VerifyOrder> requestClient)
         {
             _orderService = orderService;
             this.productStockServiceClient = productStockServiceClient;
             this.mapper = mapper;
+            _publishEndpoint = publishEndpoint;
+            _sendEndpointProvider = sendEndpointProvider;
+            _requestClient = requestClient;
         }
 
 
@@ -30,13 +41,10 @@ namespace OrdersApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(OrderModel model)
         {
-            //verify stock
-            //var stocks = await productStockServiceClient.GetStock(
-            //    model.OrderItems.Select(p => p.ProductId).ToList());
+            var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("queue:order-create-command"));
+            await sendEndpoint.Send(model);
 
-            var orderToAdd = mapper.Map<Order>(model);
-            var createdOrder = await _orderService.AddOrderAsync(orderToAdd);
-            return CreatedAtAction("GetOrder", new { id = createdOrder.Id }, createdOrder);
+            return Accepted();
         }
 
 
@@ -44,13 +52,22 @@ namespace OrdersApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _orderService.GetOrderAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
+            var response = await _requestClient
+                .GetResponse<OrderResult, OrderNotFoundResult>(new VerifyOrder
+                {
+                    Id = id
+                });
 
-            return Ok(order);
+            if (response.Is(out Response<OrderResult>? incomingMessage))
+            {
+                return Ok(incomingMessage.Message);
+            }
+            if (response.Is(out Response<OrderNotFoundResult>? notFound))
+            {
+                return NotFound(notFound.Message);
+            }
+            
+            return BadRequest();
         }
 
         // PUT: api/Orders/5
@@ -88,7 +105,6 @@ namespace OrdersApi.Controllers
             var orders = await _orderService.GetOrdersAsync();
             return Ok(orders);
         }
-
 
 
         // DELETE: api/Orders/5

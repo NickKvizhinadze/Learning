@@ -15,9 +15,15 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\Orders.Domain\Orders.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Responses\OrderNotFoundResult.cs" />
+    <Compile Include="Responses\OrderResult.cs" />
+    <Compile Include="Responses\VerifyOrder.cs" />
   </ItemGroup>
 
 </Project>
