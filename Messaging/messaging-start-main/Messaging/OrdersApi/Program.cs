@@ -41,8 +41,10 @@ namespace OrdersApi
             {
                 x.AddConsumer<OrderCreatedConsumer, OrderCreatedConsumerDefinition>();
                 x.AddConsumer<VerifyOrderConsumer>();
-                
                 x.AddRequestClient<VerifyOrder>();
+
+                x.AddConsumer<OrderCreatedConsumer>();
+                x.AddConsumer<OrderCreatedFaultConsumer>();
                 
                 x.UsingRabbitMq((context, cfg) =>
                 {
@@ -52,11 +54,6 @@ namespace OrdersApi
                     //     h.Password("guest");
                     // });
                     cfg.ConfigureEndpoints(context);
-                    
-                    // cfg.ReceiveEndpoint("order-created", e =>
-                    // {
-                    //     e.ConsumerConfigured<OrderCreatedConsumer>(context);
-                    // });
                 });
             });
 
@@ -73,7 +70,7 @@ namespace OrdersApi
                 app.UseSwaggerUI();
                 using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
-                    serviceScope.ServiceProvider.GetService<OrderContext>().Database.EnsureCreated();
+                    serviceScope.ServiceProvider.GetService<OrderContext>()!.Database.EnsureCreated();
                 }
             }
 

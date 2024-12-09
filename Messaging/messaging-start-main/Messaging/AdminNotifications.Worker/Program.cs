@@ -31,7 +31,7 @@ namespace AdminNotifications.Worker
                         {
                             cfg.ConfigureEndpoints(context);
                             
-                            cfg.ReceiveEndpoint("order-created", e =>
+                            cfg.ReceiveEndpoint("admin-order-created", e =>
                             {
                                 e.ConfigureConsumer<OrderCreatedConsumer>(context);
                             });
